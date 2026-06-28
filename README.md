@@ -2,7 +2,7 @@
 
 A deep learning project that classifies satellite image patches (EuroSAT RGB) into crop/land-use types using and comparing four CNN architectures, deployed as an interactive Streamlit web app for live predictions on uploaded images.
 
-?? **Live App:** [https://crop-type-mapping-satellite-patches.streamlit.app](https://crop-type-mapping-satellite-patches.streamlit.app)
+**Live App:** [https://crop-type-mapping-satellite-patches.streamlit.app](https://crop-type-mapping-satellite-patches.streamlit.app)
 
 ---
 
@@ -29,13 +29,13 @@ Each model is evaluated on accuracy, precision, recall, F1, ROC-AUC, and inferen
 
 ## Pipeline Summary
 
-1. **Data acquisition** — Download and unzip the EuroSAT RGB dataset.
-2. **Data cleaning** — Keep only the 3 target classes; remove corrupted, duplicate, and blurry images.
-3. **Preprocessing** — Resize to 224×224, rescale pixel values to [0, 1], with augmentation (rotation, zoom, flips, brightness, channel shift) on the training set.
-4. **Train/val/test split** — Stratified 70/15/15 split.
-5. **Training** — All four models trained with early stopping and learning rate reduction on plateau.
-6. **Evaluation** — Classification reports, confusion matrix, ROC/PR curves, Grad-CAM visualizations.
-7. **Deployment** — Best model served via a Streamlit app for interactive predictions.
+1. **Data acquisition** â€” Download and unzip the EuroSAT RGB dataset.
+2. **Data cleaning** â€” Keep only the 3 target classes; remove corrupted, duplicate, and blurry images.
+3. **Preprocessing** â€” Resize to 224Ã—224, rescale pixel values to [0, 1], with augmentation (rotation, zoom, flips, brightness, channel shift) on the training set.
+4. **Train/val/test split** â€” Stratified 70/15/15 split.
+5. **Training** â€” All four models trained with early stopping and learning rate reduction on plateau.
+6. **Evaluation** â€” Classification reports, confusion matrix, ROC/PR curves, Grad-CAM visualizations.
+7. **Deployment** â€” Best model served via a Streamlit app for interactive predictions.
 
 ## Repository Structure
 
@@ -67,7 +67,7 @@ The app will be available at `http://localhost:8501`.
 - Speeds up the build on Streamlit Community Cloud (which runs on CPU anyway)
 - Avoids pulling in CUDA/GPU dependencies that aren't needed for serving predictions
 
-If you have a GPU locally and want to use it for local testing, you can swap `tensorflow-cpu` for `tensorflow` in `requirements.txt` — the app code itself doesn't need to change either way.
+If you have a GPU locally and want to use it for local testing, you can swap `tensorflow-cpu` for `tensorflow` in `requirements.txt` â€” the app code itself doesn't need to change either way.
 
 ### Troubleshooting: NumPy/Pandas binary incompatibility error
 
@@ -88,7 +88,7 @@ Then re-run `streamlit run app.py`.
 ## Using the Live App
 
 1. Open [https://crop-type-mapping-satellite-patches.streamlit.app](https://crop-type-mapping-satellite-patches.streamlit.app).
-2. Upload a satellite image patch (JPG, PNG, or TIFF) — ideally a EuroSAT-style RGB patch (~64×64 to a few hundred pixels per side; the app resizes automatically).
+2. Upload a satellite image patch (JPG, PNG, or TIFF) â€” ideally a EuroSAT-style RGB patch (~64Ã—64 to a few hundred pixels per side; the app resizes automatically).
 3. The app displays:
    - The uploaded image
    - The predicted crop/land type (`AnnualCrop`, `PermanentCrop`, or `Pasture`)
@@ -110,7 +110,7 @@ The app is deployed on [Streamlit Community Cloud](https://streamlit.io/cloud), 
    **[https://crop-type-mapping-satellite-patches.streamlit.app](https://crop-type-mapping-satellite-patches.streamlit.app)**
 
 **Key implementation notes:**
-- Inference preprocessing in `app.py` mirrors training preprocessing exactly: resize to 224×224 and rescale pixel values by `1/255`.
+- Inference preprocessing in `app.py` mirrors training preprocessing exactly: resize to 224Ã—224 and rescale pixel values by `1/255`.
 - The model is loaded once and cached via `@st.cache_resource` to avoid reloading on every user interaction.
 - Predicted class indices are mapped back to human-readable labels using `class_indices.json`, generated from the training data generator's `class_indices` attribute.
 
@@ -124,4 +124,4 @@ The app is deployed on [Streamlit Community Cloud](https://streamlit.io/cloud), 
 
 ## Dataset
 
-[EuroSAT](https://madm.dfki.de/files/sentinel/EuroSAT.zip) — Sentinel-2 satellite image patches covering 10 land use/cover classes; this project uses the RGB version restricted to `AnnualCrop`, `PermanentCrop`, and `Pasture`.
+[EuroSAT](https://madm.dfki.de/files/sentinel/EuroSAT.zip) â€” Sentinel-2 satellite image patches covering 10 land use/cover classes; this project uses the RGB version restricted to `AnnualCrop`, `PermanentCrop`, and `Pasture`.
